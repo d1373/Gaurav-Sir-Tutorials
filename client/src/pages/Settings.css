@@ -1,0 +1,60 @@
+.settings-container {
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group select {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.tick-mark {
+  color: green;
+  font-size: 20px;
+}
+
+.batch-code {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.batch-code label {
+  margin-right: 10px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-content input {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.modal-content button {
+  margin: 5px;
+  padding: 10px 20px;
+}

@@ -1,0 +1,19 @@
+.subject-dropdown {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.subject-dropdown a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 0;
+  transition: background-color 0.3s;
+}
+
+.subject-dropdown a:hover {
+  background-color: #f0f0f0;
+}
