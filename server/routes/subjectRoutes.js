@@ -3,8 +3,9 @@ const { getSubjects, getSubjectDetails, addChapter, addPdf, updatePdf, deletePdf
 const router = express.Router();
 
 router.get('/:subjectId', getSubjectDetails);
+router.get('/details/:subjectName', getSubjectDetails)
 router.get('/:standard/:batchCode', getSubjects);
-router.post('/:subjectId/chapter', addChapter);
+router.post('/:subjectName/chapter', addChapter);
 router.post('/:subjectId/chapter/:chapterId/pdf', addPdf);
 router.put('/:subjectId/chapter/:chapterId/pdf/:pdfId', updatePdf);
 router.delete('/:subjectId/chapter/:chapterId/pdf/:pdfId', deletePdf);

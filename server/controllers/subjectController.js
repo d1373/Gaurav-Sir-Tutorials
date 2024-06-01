@@ -2,14 +2,20 @@ const Subject = require('../models/Subject');
 
 
 const addChapter = async (req, res) => {
-  const { subjectId } = req.params;
-  const { title } = req.body;
+  const { subjectName } = req.params;
+  const { standard } = req.query;
+  const { title, pdfs } = req.body;
+
   try {
-    const subject = await Subject.findById(subjectId);
-    subject.chapters.push({ title, pdfs: [] });
+    const subject = await Subject.findOne({ subjectName, standard });
+    if (!subject) {
+      return res.status(404).json({ message: 'Subject not found' });
+    }
+    subject.chapters.push({ title, pdfs });
     await subject.save();
     res.json(subject);
   } catch (error) {
+    console.error('Error adding chapter:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -76,16 +82,18 @@ const getSubjects = async (req, res) => {
 
 const getSubjectDetails = async (req, res) => {
   const { subjectId } = req.params;
-  const { userType } = req.query;
+  const { subjectName } = req.params;
+  const { userType, standard } = req.query;
+
+  console.log(`Fetching subject details for subjectId: ${subjectId}, userType: ${userType}, standard: ${standard}`);
 
   try {
     let subject;
     if (userType === 'Teacher') {
-      // Fetch all chapters for all standards if the user is a teacher
-      subject = await Subject.findOne({ _id: subjectId });
+      // Fetch all chapters for the specific standard
+      subject = await Subject.findOne({ subjectName, standard });
     } else {
       // Fetch only the chapters for the specific standard if the user is a student
-      const { standard } = req.query;
       subject = await Subject.findOne({ _id: subjectId, standard });
     }
 
@@ -99,6 +107,7 @@ const getSubjectDetails = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 
 module.exports = { addChapter, addPdf, updatePdf, deletePdf, getSubjects, getSubjectDetails };
