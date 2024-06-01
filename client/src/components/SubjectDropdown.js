@@ -21,8 +21,10 @@ const SubjectDropdown = () => {
       }
     };
 
-    fetchSubjects();
-  }, [standard, batchCode]);
+    if (userType === 'Student') {
+      fetchSubjects();
+    }
+  }, [standard, batchCode, userType]);
 
   const studentSubjects = subjects.filter(subject => {
     const userBatchCodes = batchCode.split(',');
@@ -46,11 +48,15 @@ const SubjectDropdown = () => {
 
   return (
     <div className="subject-dropdown">
-      {subjectsToShow.map(subject => (
-        <Link key={subject._id || subject.name} to={`/subject/${subject._id || subject.name}`}>
-          {subject.subjectName || subject.name}
-        </Link>
-      ))}
+      {userType === 'Teacher' ? (
+        <Link to="/dashboard">Dashboard</Link>
+      ) : (
+        subjectsToShow.map(subject => (
+          <Link key={subject._id || subject.name} to={`/subject/${subject._id || subject.name}`}>
+            {subject.subjectName || subject.name}
+          </Link>
+        ))
+      )}
     </div>
   );
 };

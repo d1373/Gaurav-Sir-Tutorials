@@ -1,0 +1,30 @@
+.dashboard-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.chapters {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.chapter {
+  margin-bottom: 20px;
+}
+
+.pdfs {
+  margin-left: 20px;
+}
+
+.pdf a {
+  display: block;
+  margin: 5px 0;
+}
